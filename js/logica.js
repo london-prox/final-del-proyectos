@@ -23,3 +23,8 @@ formulario.addEventListener("submit", function(evento) {
     // 3. Redirigir a la Landing Page
     window.location.href = "landing.html";
 });
+
+/* 1Evita que la página se recargue (evento.preventDefault()).
+3 Captura los datos que escribió la persona (nombre, teléfono, correo, dirección y fecha).
+4  Guarda el cliente en la memoria del navegador (localStorage):
+ */

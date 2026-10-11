@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,54 +8,53 @@
     <link rel="stylesheet" href="../css/landings.css">
     <link rel="stylesheet" href="../css/admin.css">
 </head>
+
 <body>
 
-    <video id="videoFondo" autoplay muted loop playsinline>
+    <video id="videoFondo" autoplay muted loop playsinline aria-hidden="true">
         <source src="../img/img_walpeper.mp4.mp4" type="video/mp4">
     </video>
-    <div class="overlay"></div>
+    <div class="overlay" aria-hidden="true"></div>
 
-    <nav class="navbar">
-        <div class="logo">iHope Admin</div>
-        <ul class="nav-links">
-            <li><a href="landing.html">Ver Landing</a></li>
-            <li><a href="dashboard.html">Formulario</a></li>
-        </ul>
-    </nav>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Navegación del panel">
+            <div class="logo">iHope Admin</div>
+            <ul class="nav-links">
+                <li><a href="landing.html">Ver Landing</a></li>
+                <li><a href="dashboard.html">Formulario</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="admin-container">
+    <main class="admin-container">
         <h2>Panel de Administración</h2>
 
-        <!-- ESTADÍSTICAS -->
-        <div class="stats-grid">
-            <div class="stat-card">
+        <section class="stats-grid" aria-label="Resumen de estadísticas">
+            <article class="stat-card">
                 <div class="stat-number" id="totalClientes">0</div>
                 <div class="stat-label">Clientes Registrados</div>
-            </div>
-            <div class="stat-card">
+            </article>
+            <article class="stat-card">
                 <div class="stat-number" id="ultimoCliente">—</div>
                 <div class="stat-label">Último Registro</div>
-            </div>
-            <div class="stat-card">
+            </article>
+            <article class="stat-card">
                 <div class="stat-number">4</div>
                 <div class="stat-label">Campos Editables</div>
-            </div>
-        </div>
+            </article>
+        </section>
 
-        <!-- GRID: TABLA + FORMULARIO -->
         <div class="admin-grid">
-            
-            <!-- TABLA DE CLIENTES -->
-            <div class="admin-section">
-                <h3>Clientes Registrados</h3>
+            <section class="admin-section" aria-labelledby="tituloClientes">
+                <h3 id="tituloClientes">Clientes Registrados</h3>
                 <div class="tabla-container">
                     <table class="tabla-clientes">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Teléfono</th>
                             </tr>
                         </thead>
                         <tbody id="tablaBody"></tbody>
@@ -63,41 +63,42 @@
                 <div class="sin-clientes" id="sinClientes">
                     Aún no hay clientes registrados
                 </div>
-                <button class="btn-borrar" onclick="borrarClientes()">🗑️ Borrar Todos los Clientes</button>
-            </div>
+                <button type="button" class="btn-borrar" onclick="borrarClientes()">🗑️ Borrar Todos los Clientes</button>
+            </section>
 
-            <!-- EDITOR DE CONTENIDO -->
-            <div class="admin-section">
-                <h3>Editar Contenido de la Landing</h3>
+            <section class="admin-section" aria-labelledby="tituloEditor">
+                <h3 id="tituloEditor">Editar Contenido de la Landing</h3>
                 
-                <div class="form-group">
-                    <label>Título Principal (Hero)</label>
-                    <input type="text" id="inputHeroTitulo" placeholder="Ej: iHope Watch Series X">
-                </div>
+                <form onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="inputHeroTitulo">Título Principal (Hero)</label>
+                        <input type="text" id="inputHeroTitulo" placeholder="Ej: iHope Watch Series X">
+                    </div>
 
-                <div class="form-group">
-                    <label>Subtítulo (Hero)</label>
-                    <textarea id="inputHeroSubtitulo" rows="3" placeholder="Ej: El reloj inteligente que redefine el lujo..."></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="inputHeroSubtitulo">Subtítulo (Hero)</label>
+                        <textarea id="inputHeroSubtitulo" rows="3" placeholder="Ej: El reloj inteligente que redefine el lujo..."></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label>Título — Sección Nosotros</label>
-                    <input type="text" id="inputNosotrosTitulo" placeholder="Ej: Diseño que Inspira">
-                </div>
+                    <div class="form-group">
+                        <label for="inputNosotrosTitulo">Título — Sección Nosotros</label>
+                        <input type="text" id="inputNosotrosTitulo" placeholder="Ej: Diseño que Inspira">
+                    </div>
 
-                <div class="form-group">
-                    <label>Texto — Sección Nosotros</label>
-                    <textarea id="inputNosotrosTexto" rows="4" placeholder="Ej: Cada reloj iHope es una obra de arte..."></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="inputNosotrosTexto">Texto — Sección Nosotros</label>
+                        <textarea id="inputNosotrosTexto" rows="4" placeholder="Ej: Cada reloj iHope es una obra de arte..."></textarea>
+                    </div>
 
-                <button class="btn-guardar" onclick="guardarCambios()">💾 Guardar Cambios</button>
-                <div id="mensajeGuardado">✅ ¡Cambios guardados exitosamente!</div>
-                <button class="btn-restaurar" onclick="resetearContenido()">🔄 Restaurar Valores por Defecto</button>
-            </div>
-
+                    <button type="button" class="btn-guardar" onclick="guardarCambios()">💾 Guardar Cambios</button>
+                    <div id="mensajeGuardado" role="status" aria-live="polite">✅ ¡Cambios guardados exitosamente!</div>
+                    <button type="button" class="btn-restaurar" onclick="resetearContenido()">🔄 Restaurar Valores por Defecto</button>
+                </form>
+            </section>
         </div>
-    </div>
+    </main>
 
     <script src="../js/admin.js"></script>
 </body>
+
 </html>

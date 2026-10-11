@@ -40,3 +40,13 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("ℹ️ No hay datos guardados. Se muestra el texto original del HTML.");
     }
 });
+
+/* 
+Espera a que cargue la página (DOMContentLoaded).
+Revisa la memoria del navegador (localStorage) para ver si el Admin cambió algún texto (datosLanding).
+Si el Admin editó algo, reemplaza automáticamente los textos de la landing en pantalla en tiempo real:
+El título principal (heroTitulo).
+El subtítulo (heroSubtitulo).
+El título de nosotros (nosotrosTitulo).
+El texto de nosotros (nosotrosTexto).
+Si el Admin no ha cambiado nada, simplemente deja los textos originales que vienen por defecto en el HTML. */

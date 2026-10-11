@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería | iHope</title>
     <link rel="stylesheet" href="../css/landings.css">
 </head>
+
 <body>
-    <video id="videoFondo" autoplay muted loop playsinline>
+    <video id="videoFondo" autoplay muted loop playsinline aria-hidden="true">
         <source src="../img/img_walpeper.mp4" type="video/mp4">
     </video>
-    <div class="overlay"></div>
+    <div class="overlay" aria-hidden="true"></div>
 
-    <nav class="navbar">
-        <div class="logo">iHope</div>
-        <ul class="nav-links">
-            <li><a href="landing.html">Inicio</a></li>
-            <li><a href="tienda.html">Tienda</a></li>
-            <li><a href="galeria.html">Galería</a></li>
-            <li><a href="contactos.html">Contactos</a></li>
-            <li><a href="admin.html" class="btn-admin">Admin </a></li>
-        </ul>
-    </nav>
-
-    <header class="page-header">
-        <h1>Galería</h1>
-        <p>Explora los detalles que hacen de iHope una obra de arte tecnológica.</p>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Navegación principal">
+            <div class="logo">iHope</div>
+            <ul class="nav-links">
+                <li><a href="landing.html">Inicio</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="contactos.html">Contactos</a></li>
+                <li><a href="admin.html" class="btn-admin">Admin </a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="galeria-container">
-        <div class="galeria-masonry">
-            <div class="galeria-item tall"></div>
-            <div class="galeria-item">🌌</div>
-            <div class="galeria-item wide">✨</div>
-            <div class="galeria-item">⌚</div>
-            <div class="galeria-item tall">💎</div>
-            <div class="galeria-item">🔮</div>
-            <div class="galeria-item wide">⌚</div>
-        </div>
-    </section>
+    <main>
+        <header class="page-header">
+            <h1>Galería</h1>
+            <p>Explora los detalles que hacen de iHope una obra de arte tecnológica.</p>
+        </header>
+
+        <section class="galeria-container" aria-label="Galería visual">
+            <div class="galeria-masonry">
+                <figure class="galeria-item tall" aria-label="Detalle 1"></figure>
+                <figure class="galeria-item" aria-label="Detalle 2">🌌</figure>
+                <figure class="galeria-item wide" aria-label="Detalle 3">✨</figure>
+                <figure class="galeria-item" aria-label="Detalle 4">⌚</figure>
+                <figure class="galeria-item tall" aria-label="Detalle 5">💎</figure>
+                <figure class="galeria-item" aria-label="Detalle 6">🔮</figure>
+                <figure class="galeria-item wide" aria-label="Detalle 7">⌚</figure>
+            </div>
+        </section>
+    </main>
 </body>
+
 </html>

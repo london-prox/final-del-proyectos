@@ -1,46 +1,255 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido | iHope</title>
     <link rel="stylesheet" href="../css/maquillaje.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f6f0f0;
+        }
+
+        #pantallaInicio {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 300;
+            background: radial-gradient(circle at center, #f6f4f7 0%, #f7f6f8 85%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #pantallaInicio.oculto {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #dashboard.oculto {
+            display: none;
+        }
+
+        .logo-porsche-completo {
+            width: 320px;
+            max-width: 85vw;
+            height: auto;
+            filter: drop-shadow(0 0 25px rgba(13, 13, 13, 0.93));
+            animation: levitacionSuave 3.5s ease-in-out infinite;
+            user-select: none;
+        }
+
+        @keyframes levitacionSuave {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.02); }
+        }
+
+        #btnEntrar {
+            padding: 16px 56px;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #f9f9f9;
+            border: 1px solid rgba(255, 254, 254, 0.923);
+            border-radius: 40px;
+            background: linear-gradient(135deg, #0b0000 0%, #120901 100%);
+            box-shadow: 0 10px 30px rgb(244, 244, 244);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #btnEntrar:hover {
+            transform: scale(1.06);
+            border-color: rgba(243, 238, 238, 0.8);
+            box-shadow: 0 14px 42px rgba(252, 251, 251, 0.9);
+        }
+
+        #intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 200;
+            background: #000;
+            overflow: hidden;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+
+        #intro.activo {
+            display: block;
+            opacity: 1;
+        }
+
+        #intro.oculto {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #intro .contenedor-videos {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #intro .video-mitad {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        @media (max-aspect-ratio: 1/1) {
+            #intro .contenedor-videos {
+                flex-direction: column;
+            }
+
+            #intro .video-mitad {
+                width: 100%;
+                height: 50%;
+            }
+        }
+
+        #btnSaltar {
+            position: absolute;
+            right: 25px;
+            bottom: 25px;
+            padding: 12px 24px;
+            background: rgba(0, 0, 0, 0.65);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            z-index: 210;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        #btnSaltar:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #fff;
+        }
+
+        .aviso-intro {
+            position: fixed;
+            left: 50%;
+            bottom: 25px;
+            transform: translateX(-50%);
+            z-index: 400;
+            padding: 12px 22px;
+            border-radius: 12px;
+            background: rgba(11, 11, 11, 0.92);
+            color: #fff;
+            font-size: 13px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .fondo-imagen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 0, 20, 0.75);
+            z-index: 2;
+        }
+
+        main {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+    </style>
 </head>
+
 <body>
 
-   <!-- IMAGEN DE FONDO (en lugar del video) -->
-<img src="../img/image 9.png" alt="Fondo" class="fondo-imagen">
+    <header id="pantallaInicio" aria-label="Pantalla de bienvenida">
+        <figure class="contenedor-logo">
+            <img src="../img/logotipo.png" alt="Logotipo Oficial Porsche" class="logo-porsche-completo">
+        </figure>
+        <button id="btnEntrar" type="button">▶ Entrar</button>
+    </header>
 
+    <aside id="intro" aria-label="Video introductorio">
+        <div class="contenedor-videos">
+            <video id="videoIzq" class="video-mitad" playsinline preload="auto" muted></video>
+            <video id="videoDer" class="video-mitad" playsinline preload="auto"></video>
+        </div>
+        <button id="btnSaltar" type="button">Saltar intro →</button>
+    </aside>
 
-    <!-- CAPA OSCURA -->
-    <div class="overlay"></div>
+    <img src="../img/image 9.png" alt="" class="fondo-imagen" aria-hidden="true">
+    <div class="overlay" aria-hidden="true"></div>
 
     <main>
-        <section class="form-container">
-            <div class="logo-top">iHope</div>
-            <h1>Bienvenido</h1>
+        <section class="form-container oculto" id="dashboard" aria-labelledby="tituloBienvenida">
+            <div class="logo-top" role="banner">PORCHE</div>
+            <h1 id="tituloBienvenida">Bienvenido</h1>
             <p>Queremos conocerte para brindarte una experiencia exclusiva.</p>
 
-            <!-- FORMULARIO -->
             <form id="formulario">
                 <div class="input-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+                    <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required autocomplete="name">
                 </div>
 
                 <div class="input-group">
                     <label for="numero">Número de teléfono</label>
-                    <input type="tel" id="numero" name="numero" placeholder="Escribe tu número" required>
+                    <input type="tel" id="numero" name="numero" placeholder="Escribe tu número" required autocomplete="tel">
                 </div>
 
                 <div class="input-group">
                     <label for="correo">Correo electrónico</label>
-                    <input type="email" id="correo" name="correo" placeholder="Escribe tu correo" required>
+                    <input type="email" id="correo" name="correo" placeholder="Escribe tu correo" required autocomplete="email">
                 </div>
 
                 <div class="input-group">
                     <label for="direccion">Dirección</label>
-                    <input type="text" id="direccion" name="direccion" placeholder="Escribe tu dirección" required>
+                    <input type="text" id="direccion" name="direccion" placeholder="Escribe tu dirección" required autocomplete="street-address">
                 </div>
 
                 <button type="submit">Comenzar Experiencia</button>
@@ -48,7 +257,82 @@
         </section>
     </main>
 
-    <!-- JAVASCRIPT AL FINAL -->
+    <script>
+        const RUTA_VIDEO_IZQUIERDA = "../img/video-izquierda.mp4";
+        const RUTA_VIDEO_DERECHA = "../img/video-derecha.mp4";
+
+        const pantallaInicio = document.getElementById("pantallaInicio");
+        const btnEntrar = document.getElementById("btnEntrar");
+        const intro = document.getElementById("intro");
+        const videoIzq = document.getElementById("videoIzq");
+        const videoDer = document.getElementById("videoDer");
+        const btnSaltar = document.getElementById("btnSaltar");
+        const dashboard = document.getElementById("dashboard");
+
+        let introFinalizada = false;
+
+        videoIzq.src = RUTA_VIDEO_IZQUIERDA;
+        videoDer.src = RUTA_VIDEO_DERECHA;
+
+        btnEntrar.addEventListener("click", () => {
+            pantallaInicio.classList.add("oculto");
+
+            intro.style.display = "block";
+            setTimeout(() => {
+                intro.classList.add("activo");
+            }, 50);
+
+            videoIzq.muted = true;
+            videoDer.muted = false;
+            videoDer.volume = 1;
+
+            const playPromesaIzq = videoIzq.play();
+            const playPromesaDer = videoDer.play();
+
+            if (playPromesaDer !== undefined) {
+                playPromesaDer.catch(err => {
+                    console.warn("No se pudo reproducir el video:", err);
+                    mostrarAvisoYPasarAlDashboard();
+                });
+            }
+        });
+
+        function terminarIntroYMostrarDashboard() {
+            if (introFinalizada) return;
+            introFinalizada = true;
+
+            videoIzq.pause();
+            videoDer.pause();
+
+            intro.classList.remove("activo");
+            intro.classList.add("oculto");
+
+            setTimeout(() => {
+                intro.style.display = "none";
+                intro.remove();
+                pantallaInicio.remove();
+                dashboard.classList.remove("oculto");
+            }, 700);
+        }
+
+        videoDer.addEventListener("ended", terminarIntroYMostrarDashboard);
+        btnSaltar.addEventListener("click", terminarIntroYMostrarDashboard);
+
+        function mostrarAvisoYPasarAlDashboard() {
+            if (introFinalizada) return;
+            const aviso = document.createElement("div");
+            aviso.className = "aviso-intro";
+            aviso.textContent = "⚠️ No se encontraron los videos en la carpeta img/ o no pudieron cargarse.";
+            document.body.appendChild(aviso);
+            setTimeout(() => aviso.remove(), 5000);
+            terminarIntroYMostrarDashboard();
+        }
+
+        videoIzq.addEventListener("error", mostrarAvisoYPasarAlDashboard);
+        videoDer.addEventListener("error", mostrarAvisoYPasarAlDashboard);
+    </script>
+
     <script src="../js/logica.js"></script>
 </body>
+
 </html>

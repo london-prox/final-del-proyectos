@@ -14,7 +14,7 @@ html, body {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
+    color: #121111;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,7 +41,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(10, 0, 20, 0.75);
+    background: rgba(19, 19, 19, 0.993);
     z-index: -1;
     pointer-events: none;
 }
@@ -55,10 +55,10 @@ main {
 }
 
 .form-container {
-    background: rgba(20, 0, 40, 0.6);
+    background: rgba(238, 238, 241, 0.708);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(138, 43, 226, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.921);
     padding: 50px 40px;
     border-radius: 24px;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 
@@ -71,7 +71,7 @@ main {
     font-weight: 900;
     letter-spacing: 3px;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #fff 0%, #8a2be2 100%);
+    background: linear-gradient(135deg, #020202 0%, #f2f0f5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -87,7 +87,7 @@ h1 {
 }
 
 p {
-    color: #b0b0d0;
+    color: #0c0c0c;
     font-size: 14px;
     margin-bottom: 35px;
     line-height: 1.5;
@@ -109,7 +109,7 @@ form {
 label {
     font-size: 12px;
     font-weight: 700;
-    color: #8a2be2;
+    color: #0e0119;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -127,13 +127,13 @@ input {
 }
 
 input::placeholder {
-    color: #6b6b8d;
+    color: #515161;
 }
 
 input:focus {
-    border-color: #8a2be2;
+    border-color: #0e0e0f;
     background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+    box-shadow: 0 0 0 3px rgba(232, 225, 237, 0.989);
 }
 
 button {
@@ -142,20 +142,20 @@ button {
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    background: linear-gradient(135deg, #8a2be2, #6a1fb0);
+    background: linear-gradient(135deg, #eae6ee, #111111);
     color: white;
     font-size: 14px;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5);
+    box-shadow: 0 8px 25px rgba(241, 239, 241, 0.962);
     transition: all 0.3s ease;
 }
 
 button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(138, 43, 226, 0.7);
+    box-shadow: 0 12px 35px rgba(239, 238, 241, 0.7);
 }
 
 @media (max-width: 480px) {
